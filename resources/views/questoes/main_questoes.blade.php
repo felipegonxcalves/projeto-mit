@@ -14,7 +14,6 @@
     @yield('content')
 
 
-{{--<script src="{{ asset('js/scripts.js') }}"></script>--}}
     <script>
         function limitarCheckboxes (questao, limite){
             let urlImage1 = '{{ asset('images/righta.svg') }}';

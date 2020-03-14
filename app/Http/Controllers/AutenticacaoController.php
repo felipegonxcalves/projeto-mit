@@ -15,10 +15,8 @@ class AutenticacaoController extends Controller
     {
         $validaUsuario = \DB::select('call spselidecandidato(?)',[$request->cpf]);
         if ($validaUsuario[0]->stsativo == "S"){
-            \Session::put('logado', ['logado' => true]);
-//            $request->session()->put(['logado' => true]);
-//            session(['logado' => true]);
-//            dd(\Session::get('logado'));
+            $ideEntrevistado = \DB::select('call spselidecandidato(?)',[$request->cpf]);
+            \Session::put('logado', ['logado' => true, 'ide_ntrevistado' => $ideEntrevistado]);
             return \redirect()->route('questoes');
         }
 
