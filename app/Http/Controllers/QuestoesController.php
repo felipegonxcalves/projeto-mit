@@ -6,7 +6,16 @@ use Illuminate\Http\Request;
 
 class QuestoesController extends Controller
 {
-    public function pageQuestoesIndex()
+
+    public function __construct()
+    {
+        if (\Session::get('logado') == null)
+        {
+            \Redirect::route("page.login")->send();
+        }
+    }
+
+    public function pageQuestoesIndex() // Pergunta 01 ++
     {
         return view('questoes.questao_01');
     }

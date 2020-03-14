@@ -10,4 +10,19 @@ class AutenticacaoController extends Controller
     {
         return view('autenticacao.page_login');
     }
+
+    public function validaLogin(Request $request)
+    {
+        $validaUsuario = \DB::select('call spselidecandidato(?)',[$request->cpf]);
+        if ($validaUsuario[0]->stsativo == "S"){
+            \Session::put('logado', ['logado' => true]);
+//            $request->session()->put(['logado' => true]);
+//            session(['logado' => true]);
+//            dd(\Session::get('logado'));
+            return \redirect()->route('questoes');
+        }
+
+        return \redirect()->route('page.login');
+
+    }
 }

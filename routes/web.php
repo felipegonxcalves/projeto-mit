@@ -15,12 +15,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', 'AutenticacaoController@pageLogin');
 
-Route::get('/questoes', 'QuestoesController@pageQuestoesIndex');
-Route::post('/questao2', 'QuestoesController@renderQuestao2')->name('questao02');
+//Route::group('plataforma-questoes', function () {
+//
+//});
+Route::get('/login', 'AutenticacaoController@pageLogin')->name('page.login');
 
-Route::post('/verifica-questao', 'QuestoesController@verificaQuestao')->name('verifica-questao');
+Route::group(['middleware' => ['web']], function () {
+    // your routes here
+
+    Route::post('/valida-login', 'AutenticacaoController@validaLogin')->name('valida.login');
+
+    Route::get('/questoes', 'QuestoesController@pageQuestoesIndex')->name('questoes');
+    Route::post('/questao2', 'QuestoesController@renderQuestao2')->name('questao02');
+
+    Route::post('/verifica-questao', 'QuestoesController@verificaQuestao')->name('verifica-questao');
+});
+
+
+
 
 
 

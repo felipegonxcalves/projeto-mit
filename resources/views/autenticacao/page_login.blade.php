@@ -13,18 +13,24 @@
 
 <body>
 <div class="questao" id="q0" style="width: 85vw; height: 430;">
-    <table id="form" class="fundoGradient">
-        <tbody>
-        <tr>
-            <td>
-                <div class="numero"></div><span>CPF</span>
-            </td>
-            <td><input type="text" id="cpf" style="width: 350px;" value="">
-            </td>
-            <td>
-                <button id="enviar">ENVIAR</button></td>
-        </tr>
-        </tbody></table>
+    <form action="{{ route('valida.login') }}" method="post">
+        {{ csrf_field() }}
+
+        <table id="form" class="fundoGradient">
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="numero"></div><span>CPF</span>
+                    </td>
+                    <td><input type="text" id="cpf" style="width: 350px;" value="" name="cpf">
+                    </td>
+                    <td>
+                        <button id="enviar">ENVIAR</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+
 </div>
 
 <script src="{{ asset('js/scripts.js') }}"></script>
